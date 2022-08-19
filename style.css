@@ -2,12 +2,13 @@
    margin: 0;
    padding: 0;
    font-family: "Poppins", sans-serif;
+   box-sizing: border-box;
 }
 
 body {
    background: linear-gradient(0deg, rgba(195, 110, 34, 1) 0%, rgba(253, 45, 109, 1) 100%) no-repeat center;
    color: #fff;
-   height: 100vh;
+   min-height: 100vh;
 }
 
 h1 {
@@ -19,7 +20,7 @@ h1 {
 
 .container {
    margin: 0 auto;
-   margin-top: 60px;
+   padding-top: 60px;
    min-width: 350px;
    max-width: 450px;
 }
@@ -56,6 +57,10 @@ h1 {
    font-weight: 400;
 }
 
+#input-text.error {
+   border-color: #ff0000 !important;
+}
+
 .add-button {
    font-size: 1rem;
    padding: 6px 12px;
@@ -76,6 +81,7 @@ h1 {
    background-color: #fff;
    color: #000;
    padding: 20px;
+   margin-bottom: 60px;
    border-radius: 5px;
    display: flex;
    flex-direction: column;
@@ -83,12 +89,32 @@ h1 {
 }
 
 .task {
-   display: flex;
+   display: grid;
+   grid-template-columns: auto 1fr auto;
    align-items: center;
-   justify-content: space-between;
-   gap: 20px;
+   gap: 15px;
 }
 
-.task span {
+.task-checkbox {
    cursor: pointer;
+   transform: scale(1.15);
+   padding-top: 10px;
+}
+
+.task i {
+   padding: 6px;
+   color: #7b7b7b;
+   cursor: pointer;
+}
+
+.task i:hover {
+   color: #2282c3;
+}
+
+.task-text {
+   font-size: 1rem;
+}
+
+.task-text.done {
+   text-decoration: line-through;
 }
