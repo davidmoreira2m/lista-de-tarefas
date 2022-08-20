@@ -2,7 +2,7 @@ const inputText = document.querySelector("#input-text");
 const addButton = document.querySelector(".add-button");
 const taskListContainer = document.querySelector(".task-list-container");
 
-const addNewTask = (name, isDone) => {
+const addNewTask = (taskName, isDone) => {
    const task = document.createElement("div");
    task.classList.add("task");
    taskListContainer.appendChild(task);
@@ -13,7 +13,7 @@ const addNewTask = (name, isDone) => {
    task.appendChild(taskCheckBox);
 
    const taskText = document.createElement("p");
-   taskText.innerText = name;
+   taskText.innerText = taskName;
    taskText.classList.add("task-text");
    task.appendChild(taskText);
 
@@ -48,10 +48,10 @@ addButton.addEventListener("click", () => {
    if (!inputText.value.trim()) {
       inputText.classList.add("error");
       inputText.value = "";
-      return;
+   } else {
+      addNewTask(inputText.value);
+      inputText.value = "";
    }
-   addNewTask(inputText.value);
-   inputText.value = "";
 });
 
 inputText.addEventListener("focus", () => {
@@ -59,21 +59,20 @@ inputText.addEventListener("focus", () => {
 });
 
 const updateLS = () => {
-   const tasks = taskListContainer.childNodes;
+   const tasks = Array.from(taskListContainer.childNodes);
 
-   const tasksLS = [...tasks].map((taskLS) => {
+   const tasksLS = tasks.map((taskLS) => {
       const content = taskLS.querySelector("p");
       const isDone = content.classList.contains("done");
       return { descriptiom: content.innerText, isDone };
    });
-   localStorage.setItem("tasks", JSON.stringify(tasksLS));
+   localStorage.setItem("tasksLS", JSON.stringify(tasksLS));
 };
 
 const refreshLS = () => {
-   const tasksFromLS = JSON.parse(localStorage.getItem("tasks"));
+   const tasksFromLS = JSON.parse(localStorage.getItem("tasksLS"));
    for (const taskLS of tasksFromLS) {
       addNewTask(taskLS.descriptiom, taskLS.isDone);
    }
 };
-
 refreshLS();
