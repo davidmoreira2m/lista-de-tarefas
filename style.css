@@ -9,6 +9,7 @@ body {
    background: linear-gradient(0deg, rgba(195, 110, 34, 1) 0%, rgba(253, 45, 109, 1) 100%) no-repeat center;
    color: #fff;
    min-height: 100vh;
+   padding: 10px;
 }
 
 h1 {
@@ -21,7 +22,6 @@ h1 {
 .container {
    margin: 0 auto;
    padding-top: 60px;
-   min-width: 350px;
    max-width: 450px;
 }
 
@@ -117,4 +117,16 @@ h1 {
 
 .task-text.done {
    text-decoration: line-through;
+}
+
+@media (max-width: 450px) {
+   .container {
+      padding-top: 20px;
+   }
+   .task-list-container {
+      margin-bottom: 20px;
+   }
+   .add-task-container {
+      flex-wrap: wrap;
+   }
 }
